@@ -10,7 +10,6 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 app.post('/repos', function (req, res) {
   // TODO - your code here!
-  res.status(201).send('hi');
   let username = req.body.term;
   getReposByUsername(username, (err, results) => {
     if (err) {
@@ -19,7 +18,8 @@ app.post('/repos', function (req, res) {
       let repos = JSON.parse(results.toString());
       repos.forEach((repo) => {
         console.log(repo.name);
-        //repo.save()
+        res.status(201).send('Your Post to Server / Request to API worked');
+        // repo.save()
       })
     }
   });

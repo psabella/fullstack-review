@@ -15,17 +15,13 @@ class App extends React.Component {
   }
 
   search (term) {
-    // event.preventDefault();
     axios.post('/repos', { term })
       .then(() => {
-        console.log('axios post worked');
-        // wtf is this supposed to do?
+        console.log(`${term} was searched`);
       })
       .catch((err) => {
         console.error(err);
       })
-    console.log(`${term} was searched`);
-    // event.target.reset();
   }
 
   render () {
