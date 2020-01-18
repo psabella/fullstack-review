@@ -17,7 +17,7 @@ let repoSchema = mongoose.Schema({
 let Repo = mongoose.model('Repo', repoSchema);
 
 // for each repo need to create an instance of the Repo class with the values corresponding to the repo data
-let save = (err, <<now pass in all the data for the properties>>) => {
+let save = (err, ) => {
   // TODO: Your code here
   if (err) {
     return console.error(err);
