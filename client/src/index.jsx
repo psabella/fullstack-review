@@ -9,15 +9,31 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      repos: []
+      repos: [],
+      top25repos: []
     }
-
   }
 
   search (term) {
     axios.post('/repos', { term })
-      .then(() => {
+      .then((reposSaved) => {
         console.log(`${term} was searched`);
+        // this.setState({
+        //   repos: this.state.repos.concat(reposSaved)
+        // })
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  }
+
+  componentDidMount () {
+    console.log('didMount ran');
+    axios.get('/repos')
+      .then((results) => {
+        this.setState({
+          top25repos: results.data
+        })
       })
       .catch((err) => {
         console.error(err);
@@ -27,10 +43,13 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
       <Search onSearch={this.search.bind(this)}/>
+      <br/>
+      <RepoList repos={this.state.repos} top25repos={this.state.top25repos}/>
+      {console.log(this.state.top25repos)}
     </div>)
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+

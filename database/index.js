@@ -22,9 +22,21 @@ let save = (repos, callback) => {
   Repo.create(repos, callback);
 }
 
+// get the count of repos in the db
+let countSavedRepos = (callback) => {
+
+}
+
 // This function should retrieve the top 25 by stargazers_count, descending
 let getTop25Repos = (callback) => {
-  repos.find({}).sort({'stargazers_count': -1}).limit(25)
+  console.log('getTop25Repos ran')
+  Repo.find({}, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  }).sort({'stargazers_count': -1}).limit(25);
 }
 
 module.exports.save = save;

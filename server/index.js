@@ -28,8 +28,8 @@ app.post('/repos', function (req, res) {
       save(repos, (err) => {
         console.error(err);
       });
+      res.status(201).send(results);
     }
-  res.status(201).send('Your Post to Server / Request to API worked');
   });
 });
 
