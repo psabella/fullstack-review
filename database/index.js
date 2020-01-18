@@ -6,7 +6,7 @@ let repoSchema = mongoose.Schema({
   id: {type: Number, unique: true},
   name: String,
   url: String,
-  watchers_count: Number,
+  stargazers_count: Number,
   owner: {
     id: Number,
     login: String
@@ -18,8 +18,14 @@ let Repo = mongoose.model('Repo', repoSchema);
 
 // This function should save a repo or repos to
 // the MongoDB
-let save = (repos) => {
-  Repo.create(repos);
+let save = (repos, callback) => {
+  Repo.create(repos, callback);
+}
+
+// This function should retrieve the top 25 by stargazers_count, descending
+let getTop25Repos = (callback) => {
+  repos.find({}).sort({'stargazers_count': -1}).limit(25)
 }
 
 module.exports.save = save;
+module.exports.getTop25Repos = getTop25Repos;
