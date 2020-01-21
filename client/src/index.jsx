@@ -27,8 +27,7 @@ class App extends React.Component {
       })
   }
 
-  componentDidMount () {
-    console.log('didMount ran');
+  getTop25 () {
     axios.get('/repos')
       .then((results) => {
         this.setState({
@@ -40,13 +39,16 @@ class App extends React.Component {
       })
   }
 
+  componentDidMount () {
+    this.getTop25();
+  }
+
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
       <Search onSearch={this.search.bind(this)}/>
       <br/>
       <RepoList repos={this.state.repos} top25repos={this.state.top25repos}/>
-      {console.log(this.state.top25repos)}
     </div>)
   }
 }
