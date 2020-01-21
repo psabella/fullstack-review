@@ -18,9 +18,10 @@ class App extends React.Component {
     axios.post('/repos', { term })
       .then((reposSaved) => {
         console.log(`${term} was searched`);
-        // this.setState({
-        //   repos: this.state.repos.concat(reposSaved)
-        // })
+        this.setState({
+          repos: this.state.repos.concat(reposSaved.data)
+        })
+        this.getTop25();
       })
       .catch((err) => {
         console.error(err);

@@ -8,9 +8,9 @@ const RepoList = (props) => (
     <table>
       <tbody>
         <tr>
-          <th> Repo Name</th>
+          <th>Repo Name</th>
           <th>User</th>
-          <th>Star Count</th>
+          <th>Stars</th>
         </tr>
         {props.top25repos.map((repo, index) => {
           return <RepoListEntry key={index} repo={repo}/>

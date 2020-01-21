@@ -3,7 +3,7 @@ import React from 'react';
 const RepoListEntry = (props) => (
   <tr>
     <td>
-      <a href={props.repo.url}>{props.repo.name}</a>
+      <a href={props.repo.html_url}>{props.repo.name}</a>
     </td>
     <td>
       {props.repo.owner.login}
