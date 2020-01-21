@@ -22,6 +22,7 @@ class App extends React.Component {
           repos: this.state.repos.concat(reposSaved.data)
         })
         this.getTop25();
+        this.getAllRepos();
       })
       .catch((err) => {
         console.error(err);
@@ -40,8 +41,21 @@ class App extends React.Component {
       })
   }
 
+  getAllRepos () {
+    axios.get('/repos/all')
+      .then((results) => {
+        this.setState({
+          repos: results.data
+        })
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  }
+
   componentDidMount () {
     this.getTop25();
+    this.getAllRepos();
   }
 
   render () {

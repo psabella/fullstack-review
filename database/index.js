@@ -23,8 +23,14 @@ let save = (repos, callback) => {
 }
 
 // get the count of repos in the db
-let countSavedRepos = (callback) => {
-
+let getSavedRepos = (callback) => {
+  Repo.find({}, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  })
 }
 
 // This function should retrieve the top 25 by stargazers_count, descending
@@ -41,3 +47,4 @@ let getTop25Repos = (callback) => {
 
 module.exports.save = save;
 module.exports.getTop25Repos = getTop25Repos;
+module.exports.getSavedRepos = getSavedRepos;
